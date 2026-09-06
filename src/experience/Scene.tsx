@@ -29,7 +29,7 @@ export function Scene({progress,reduced}:{progress:MotionValue<number>,reduced:b
     key.current.intensity=mix(mix(25,55,close),95,metal)+shop*65
     key.current.position.x=mix(-1,4,smooth(p,.44,.57))
     fill.current.intensity=mix(17,55,metal)
-    const x=mobile?.65:1.6
+    const x=mobile?.05:1.6
     world.current.position.set(x,mobile?-1.5:0,0)
     world.current.scale.setScalar(mobile?.65:1)
     camera.position.set(reduced?0:Math.sin(p*4)*.32,mix(.3,.8,metal)+shop*1.0,mix(mix(8.7,7.5,close),mobile?16:15,shop))
