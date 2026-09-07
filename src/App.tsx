@@ -14,7 +14,8 @@ function Chapter({index,progress}:{index:number,progress:MotionValue<number>}) {
   const s=stages[index]
   const opacity=useTransform(progress,[s.a,s.a+.018,s.b-.018,s.b],[0,1,1,0])
   const y=useTransform(progress,[s.a,s.a+.024,s.b-.018,s.b],[22,0,0,-18])
-  return <motion.section className="chapter" style={{opacity,y}} aria-label={`${index+1}. ${s.label}`}><div className="chapter-eyebrow"><span className="accent">0{index+1}</span><span className="hairline"/>{s.label}</div><h2>{s.title}</h2><p>{s.text}</p><div className="material-note"><span/> {s.note}</div></motion.section>
+  const noteOpacity=useTransform(progress,[.565,.585],index===1?[1,0]:[1,1])
+  return <motion.section className="chapter" style={{opacity,y}} aria-label={`${index+1}. ${s.label}`}><div className="chapter-eyebrow"><span className="accent">0{index+1}</span><span className="hairline"/>{s.label}</div><h2>{s.title}</h2><p>{s.text}</p><motion.div className="material-note" style={{opacity:noteOpacity}}><span/> {s.note}</motion.div></motion.section>
 }
 class CanvasBoundary extends Component<{children:ReactNode},{failed:boolean}> {
   state={failed:false}
@@ -40,6 +41,6 @@ export function App() {
     {stages.map((_,i)=><Chapter key={i} index={i} progress={progress}/>)}
     <motion.div className="process-caption" style={{opacity:transition}}><span>LA MATERIA CAMBIA.</span><p>Fragmentación y refinación</p></motion.div><motion.div className="rolling-caption" style={{opacity:roll}}>LAMINADO <span>→</span> UNA LÁMINA, INFINITAS POSIBILIDADES</motion.div>
     <motion.div className="ending-shade" style={{opacity:dark}}/><motion.section className="outro" style={{opacity:outro}}><div className="eyebrow">CUATRO ETAPAS. UNA TRANSFORMACIÓN.</div><h2>DE LA MATERIA PRIMA<br/><span>AL PRODUCTO FINAL.</span></h2><p>BAUXITA <span>→</span> ALUMINIO <span>→</span> LATA <span>→</span> COMERCIALIZACIÓN</p><button onClick={()=>go(0)} disabled={percent<97}>VOLVER AL ORIGEN <span>↗</span></button></motion.section>
-    <aside className="side-note">MATERIA EN TRANSFORMACIÓN <span> / </span> Al — 26.98</aside><footer><div className="footer-top"><span>EL RECORRIDO</span><span>{String(percent).padStart(3,'0')}<i> %</i></span></div><nav aria-label="Etapas del proceso" className="stage-nav"><div className="track"/><motion.div className="track fill" style={{scaleX:raw}}/>{['Bauxita','Aluminio','Lata','Comercialización'].map((s,i)=><button key={s} onClick={()=>go(stops[i])} aria-current={stage===i?'step':undefined}><span className="nav-dot"/><span className="nav-number">0{i+1}</span><span className="nav-label">{s}</span></button>)}</nav></footer>
+    <a className="asset-credit" href="/models/CREDITS.txt" target="_blank" rel="noreferrer">Lata 3D: William Prosser · CC BY 4.0 ↗</a><aside className="side-note">MATERIA EN TRANSFORMACIÓN <span> / </span> Al — 26.98</aside><footer><div className="footer-top"><span>EL RECORRIDO</span><span>{String(percent).padStart(3,'0')}<i> %</i></span></div><nav aria-label="Etapas del proceso" className="stage-nav"><div className="track"/><motion.div className="track fill" style={{scaleX:raw}}/>{['Bauxita','Aluminio','Lata','Comercialización'].map((s,i)=><button key={s} onClick={()=>go(stops[i])} aria-current={stage===i?'step':undefined}><span className="nav-dot"/><span className="nav-number">0{i+1}</span><span className="nav-label">{s}</span></button>)}</nav></footer>
   </div></main>
 }

@@ -7,3 +7,4 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 .chapter h2{width:480px;max-width:80vw}.chapter:nth-of-type(4) h2{font-size:clamp(70px,7vw,115px)}
 @media(max-width:550px){.chapter h2,.chapter:nth-of-type(4) h2{font-size:61px;width:300px}.material-note{max-width:240px}}
+.asset-credit{position:absolute;right:4.5%;top:94px;z-index:21;color:#969995;font-size:10px;letter-spacing:.5px;text-decoration:none}.asset-credit:hover{color:#de8059}@media(max-width:550px){.asset-credit{top:90px;right:6%;font-size:8px}}

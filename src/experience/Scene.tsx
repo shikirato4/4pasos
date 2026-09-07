@@ -32,13 +32,13 @@ export function Scene({progress,reduced}:{progress:MotionValue<number>,reduced:b
     const x=mobile?.05:1.6
     world.current.position.set(x,mobile?-1.5:0,0)
     world.current.scale.setScalar(mobile?.65:1)
-    camera.position.set(reduced?0:Math.sin(p*4)*.32,mix(.3,.8,metal)+shop*1.0,mix(mix(8.7,7.5,close),mobile?16:15,shop))
+    camera.position.set(reduced?0:Math.sin(p*4)*.32,mix(.3,1.35,metal)+shop*.45,mix(mix(8.7,7.5,close),mobile?16:15,shop))
     target.set(0,mobile?-.1:shop*.3,0);camera.lookAt(target)
     if(camera instanceof THREE.PerspectiveCamera){camera.fov=mobile?48:38;camera.updateProjectionMatrix()}
   })
   return <>
     <ambientLight intensity={.17}/><pointLight ref={key} position={[-1,4,4]} intensity={70} distance={30} decay={2}/><pointLight ref={fill} position={[5,1,-3]} color="#8fa2b6" intensity={25} distance={25}/><directionalLight position={[2,5,3]} intensity={.55} color="#fff0df"/>
-    <Environment resolution={128} frames={1}><mesh><sphereGeometry args={[40,16,16]}/><meshBasicMaterial color="#535d68" side={THREE.BackSide}/></mesh><Lightformer form="rect" intensity={1.2} position={[0,1,7]} scale={[8,5,1]}/><Lightformer form="rect" intensity={4} position={[-4,3,5]} scale={[2,8,1]} rotation={[0,Math.PI/4,0]}/><Lightformer form="rect" intensity={3} position={[5,1,2]} scale={[1,7,1]} rotation={[0,-Math.PI/3,0]}/><Lightformer form="rect" intensity={2.5} position={[0,5,0]} scale={[8,2,1]} rotation={[Math.PI/2,0,0]}/></Environment>
+    <Environment resolution={256} frames={1}><mesh><sphereGeometry args={[40,16,16]}/><meshBasicMaterial color="#535d68" side={THREE.BackSide}/></mesh><Lightformer form="rect" intensity={1.2} position={[0,1,7]} rotation={[0,Math.PI,0]} scale={[8,5,1]}/><Lightformer form="rect" intensity={4} position={[-4,3,5]} scale={[2,8,1]} rotation={[0,Math.PI*.75,0]}/><Lightformer form="rect" intensity={3} position={[5,1,2]} scale={[1,7,1]} rotation={[0,-Math.PI*.65,0]}/><Lightformer form="rect" intensity={2.5} position={[0,5,0]} scale={[8,2,1]} rotation={[Math.PI/2,0,0]}/></Environment>
     <Dust progress={progress} reduced={reduced}/><group ref={world}><Bauxite progress={progress}/><Metal progress={progress}/><Supermarket progress={progress}/></group>
   </>
 }

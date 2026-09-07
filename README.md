@@ -1,6 +1,6 @@
 # Aluminio — De la tierra a tus manos
 
-Experiencia de 850 vh, en español, con un único Canvas sticky y una timeline reversible. React + TypeScript + Vite + Tailwind CSS v4 + Motion + Three.js / React Three Fiber / Drei. Sin modelos externos ni animación automática de la historia.
+Experiencia de 850 vh, en español, con un único Canvas sticky y una timeline reversible. React + TypeScript + Vite + Tailwind CSS v4 + Motion + Three.js / React Three Fiber / Drei. Sin animación automática de la historia. Lata externa de Coca-Cola incorporada a petición del usuario; crédito y licencia en public/models/CREDITS.txt.
 
 ## Desarrollo
 
@@ -27,3 +27,5 @@ Todas las posiciones y rotaciones dependen exclusivamente del progreso, sin fís
 Respeta movimiento reducido, navegación por teclado y WebGL no disponible. El entorno usa Lightformers, sin HDR descargado. El DPR máximo es 1.5. Tipografías: Barlow Condensed y DM Sans con alternativas locales.
 
 Referencias técnicas: [Motion useScroll](https://motion.dev/docs/react-use-scroll) y [R3F useFrame](https://r3f.docs.pmnd.rs/api/hooks).
+
+Gráficos mejorados: MetalDetails.tsx contiene lingote con perfil de fundición, texturas de cepillado, rodillos torneados, ejes, rodamientos, tornillería y bastidor fijo. CocaColaCan.tsx normaliza el GLB descargado de William Prosser (CC BY 4.0), conserva texturas 2K y comparte geometría mediante instancing en el supermercado.
