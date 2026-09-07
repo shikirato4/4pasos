@@ -29,10 +29,12 @@ export function Scene({progress,reduced}:{progress:MotionValue<number>,reduced:b
     key.current.intensity=mix(mix(25,55,close),95,metal)+shop*65
     key.current.position.x=mix(-1,4,smooth(p,.44,.57))
     fill.current.intensity=mix(17,55,metal)
-    const x=mobile?.05:1.6
-    world.current.position.set(x,mobile?-1.5:0,0)
+    const compact=size.width<1000
+    const shopDistance=Math.max(mobile?20:21,(mobile?6:11.8)/(size.width/size.height*Math.tan((mobile?48:38)*Math.PI/360)))
+    const x=mobile?.05:mix(1.6,compact?0:2.9,shop)
+    world.current.position.set(x,mobile?-1.5-shop*1.4:compact?-shop*2:0,0)
     world.current.scale.setScalar(mobile?.65:1)
-    camera.position.set(reduced?0:Math.sin(p*4)*.32,mix(.3,1.35,metal)+shop*.45,mix(mix(8.7,7.5,close),mobile?16:15,shop))
+    camera.position.set(reduced?0:Math.sin(p*4)*.32,mix(.3,1.35,metal)+shop*.8,mix(mix(8.7,7.5,close),shopDistance,shop))
     target.set(0,mobile?-.1:shop*.3,0);camera.lookAt(target)
     if(camera instanceof THREE.PerspectiveCamera){camera.fov=mobile?48:38;camera.updateProjectionMatrix()}
   })
