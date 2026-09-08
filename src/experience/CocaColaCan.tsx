@@ -6,7 +6,7 @@ import * as THREE from 'three'
 import type { MotionValue } from 'motion/react'
 import { smooth } from './timeline'
 
-export const CAN_MODEL='/models/coca-cola-can.glb'
+export const CAN_MODEL='./models/coca-cola-can.glb'
 export function useCanParts(){
   const {scene}=useGLTF(CAN_MODEL)
   return useMemo(()=>{
