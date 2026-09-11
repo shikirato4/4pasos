@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { MotionValue } from 'motion/react'
 import { smooth } from './timeline'
-import { ShelfCans } from './AluminumCan'
+import { ShelfCans } from './CocaColaCan'
 import { NeighborhoodShop } from './NeighborhoodShop'
 export function Supermarket({progress}:{progress:MotionValue<number>}) {
   const group=useRef<THREE.Group>(null!)
@@ -16,11 +16,11 @@ export function Supermarket({progress}:{progress:MotionValue<number>}) {
     return arr
   },[])
   useFrame(()=>{
-    const p=progress.get(),r=smooth(p,.862,.951)
-    group.current.visible=p>.862
+    const p=progress.get(),r=smooth(p,.895,.922)
+    group.current.visible=p>.895
     group.current.children.forEach((obj,i)=>{
-      if(i<2){obj.scale.setScalar(smooth(p,.886,.939));return}
-      obj.scale.y=smooth(p,.862+(i%4)*.008,.918+(i%4)*.008)
+      if(i<2){obj.scale.setScalar(smooth(p,.9,.923));return}
+      obj.scale.y=smooth(p,.895+(i%4)*.004,.916+(i%4)*.004)
     })
     group.current.position.z=(1-r)*-6
   })

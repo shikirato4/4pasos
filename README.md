@@ -18,10 +18,14 @@ npm run build
 - `src/experience/timeline.ts`: rangos, funciones puras y navegación.
 - `Bauxite.tsx`: roca procedural dividida en tetraedros cerrados; fragmentación determinista.
 - `Metal.tsx`: lingote, laminadora, malla de lámina curvada por longitud de arco, tapa y anilla.
-- `AluminumCan.tsx`: lata procedural sin marca y productos instanciados.
+- `CocaColaCan.tsx`: modelo 3D detallado de una lata Coca-Cola y copias instanciadas para la tienda.
 - `Distribution.tsx`: fábrica, envasado, transporte y centro de distribución.
 - `Supermarket.tsx`: tienda progresiva y productos instanciados.
 - `Scene.tsx`: cámara, iluminación y entorno de reflexión procedural.
+
+El modelo de la lata Coca-Cola fue creado por William Prosser y se usa bajo
+[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+Los créditos completos están incluidos en `public/models/CREDITS.txt`.
 - `App.tsx`: textos y navegación derivados del mismo MotionValue.
 
 Todas las posiciones y rotaciones dependen exclusivamente del progreso, sin física ni tiempo transcurrido. La curvatura de la lámina es una abstracción didáctica: industrialmente el cuerpo de la lata se forma mediante embutición y estirado; no se fabrica enrollando y soldando una lámina. La transformación visual de mineral a metal sintetiza refinación Bayer y electrólisis Hall–Héroult, no describe una conversión mecánica directa.

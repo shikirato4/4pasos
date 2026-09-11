@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import type { MotionValue } from 'motion/react'
 import { mix,smooth,range } from './timeline'
 import { CastIngot, RollerAssembly, MachineFrame, CanLid, CanBase, useBrushedTexture } from './MetalDetails'
-import { AluminumCan } from './AluminumCan'
+import { CocaColaCan } from './CocaColaCan'
 export const metalProps={color:'#b5bdc4',metalness:1,roughness:.23}
 export function Metal({progress}:{progress:MotionValue<number>}) {
   const ingot=useRef<THREE.Group>(null!),roller=useRef<THREE.Group>(null!),sheet=useRef<THREE.Mesh>(null!),can=useRef<THREE.Group>(null!)
@@ -16,7 +16,7 @@ export function Metal({progress}:{progress:MotionValue<number>}) {
   const geometry=useMemo(()=>new THREE.PlaneGeometry(1,1,128,48),[])
   const last=useRef(-1)
   useFrame(()=>{
-    const p=progress.get(),lam=smooth(p,.575,.705),curl=smooth(p,.73,.802),reveal=smooth(p,.86,.95)
+    const p=progress.get(),lam=smooth(p,.575,.705),curl=smooth(p,.73,.802),transport=smooth(p,.838,.88)
     ingot.current.visible=p>=.399&&p<.714
     const emerge=smooth(p,.399,.445),handoff=1-smooth(p,.70,.715)
     ingot.current.scale.set(mix(2.8,4.4,lam)*emerge*handoff,mix(.75,.038,lam)*emerge,mix(1.25,1.9,lam)*emerge)
@@ -29,9 +29,10 @@ export function Metal({progress}:{progress:MotionValue<number>}) {
     roller.current.children.forEach((r,i)=>{r.children[0].children[0].rotation.z=(i===0?1:-1)*range(p,.58,.74)*Math.PI*5;r.position.y=(i===0?1:-1)*(.515+mix(.75,.038,lam)/2)})
     sheet.current.visible=p>=.70&&p<.845
     shellMaterial.current.opacity=1-smooth(p,.813,.845)
-    can.current.rotation.set(mix(-Math.PI/2,.1,smooth(p,.712,.765))*(1-reveal),(mix(-.42,0,smooth(p,.71,.77))-.35*smooth(p,.80,.86))*(1-reveal),0)
-    can.current.position.set(mix(0,-.7,reveal),mix(0,-.08,reveal),mix(0,-.15,reveal))
-    can.current.scale.setScalar(mix(1,.72,reveal))
+    can.current.visible=p<.9
+    can.current.rotation.set(mix(-Math.PI/2,.1,smooth(p,.712,.765))*(1-transport),(mix(-.42,0,smooth(p,.71,.77))-.35*smooth(p,.80,.86))*(1-transport),0)
+    can.current.position.set(mix(0,2.75,transport),mix(0,1.3,transport),mix(0,-.35,transport))
+    can.current.scale.setScalar(mix(1,.38,transport))
     if(last.current!==p){
       const pos=geometry.attributes.position
       const width=mix(4.4,Math.PI*1.3,smooth(p,.71,.77)),height=mix(1.9,2.25,smooth(p,.715,.78))
@@ -62,7 +63,7 @@ export function Metal({progress}:{progress:MotionValue<number>}) {
     <group ref={can}>
       <mesh ref={sheet} geometry={geometry}><meshPhysicalMaterial ref={shellMaterial} {...metalProps} transparent side={THREE.DoubleSide} roughness={.3} roughnessMap={grain} bumpMap={grain} bumpScale={.0015} clearcoat={.25} clearcoatRoughness={.25}/></mesh>
       <group ref={caps}><group><CanLid/></group><group><CanBase/></group></group>
-      <AluminumCan progress={progress}/>
+      <CocaColaCan progress={progress}/>
     </group>
   </>
 }
