@@ -29,10 +29,11 @@ yarn-error.log*
 # local environment
 .env*
 
-# deployment and generated files
+# generated and deployment files
 .vercel
 next-env.d.ts
 /dist/
 /.wrangler/
 /outputs/
 /work/
+/.sites-runtime/

@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { MotionValue } from 'motion/react'
 import { smooth } from './timeline'
-import { ShelfCans } from './CocaColaCan'
+import { ShelfCans } from './AluminumCan'
 import { NeighborhoodShop } from './NeighborhoodShop'
 export function Supermarket({progress}:{progress:MotionValue<number>}) {
   const group=useRef<THREE.Group>(null!)

@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import type { MotionValue } from 'motion/react'
 import { mix,smooth,range } from './timeline'
 import { CastIngot, RollerAssembly, MachineFrame, CanLid, CanBase, useBrushedTexture } from './MetalDetails'
-import { CocaColaCan } from './CocaColaCan'
+import { AluminumCan } from './AluminumCan'
 export const metalProps={color:'#b5bdc4',metalness:1,roughness:.23}
 export function Metal({progress}:{progress:MotionValue<number>}) {
   const ingot=useRef<THREE.Group>(null!),roller=useRef<THREE.Group>(null!),sheet=useRef<THREE.Mesh>(null!),can=useRef<THREE.Group>(null!)
@@ -62,7 +62,7 @@ export function Metal({progress}:{progress:MotionValue<number>}) {
     <group ref={can}>
       <mesh ref={sheet} geometry={geometry}><meshPhysicalMaterial ref={shellMaterial} {...metalProps} transparent side={THREE.DoubleSide} roughness={.3} roughnessMap={grain} bumpMap={grain} bumpScale={.0015} clearcoat={.25} clearcoatRoughness={.25}/></mesh>
       <group ref={caps}><group><CanLid/></group><group><CanBase/></group></group>
-      <CocaColaCan progress={progress}/>
+      <AluminumCan progress={progress}/>
     </group>
   </>
 }

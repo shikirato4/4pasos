@@ -1,6 +1,6 @@
 # Aluminio — De la tierra a tus manos
 
-Experiencia de 850 vh, en español, con un único Canvas sticky y una timeline reversible. React + TypeScript + Vite + Tailwind CSS v4 + Motion + Three.js / React Three Fiber / Drei. Sin animación automática de la historia. Lata externa de Coca-Cola incorporada a petición del usuario; crédito y licencia en public/models/CREDITS.txt.
+Presentación escolar 3D de 850 vh, en español, con un único Canvas sticky y una línea de tiempo reversible. Explica la cadena de la bauxita a la lata y relaciona cada etapa con los sectores primario, secundario y terciario. React + TypeScript + Vite + Tailwind CSS v4 + Motion + Three.js / React Three Fiber / Drei.
 
 ## Desarrollo
 
@@ -18,7 +18,9 @@ npm run build
 - `src/experience/timeline.ts`: rangos, funciones puras y navegación.
 - `Bauxite.tsx`: roca procedural dividida en tetraedros cerrados; fragmentación determinista.
 - `Metal.tsx`: lingote, laminadora, malla de lámina curvada por longitud de arco, tapa y anilla.
-- `Supermarket.tsx`: estante progresivo y productos instanciados.
+- `AluminumCan.tsx`: lata procedural sin marca y productos instanciados.
+- `Distribution.tsx`: fábrica, envasado, transporte y centro de distribución.
+- `Supermarket.tsx`: tienda progresiva y productos instanciados.
 - `Scene.tsx`: cámara, iluminación y entorno de reflexión procedural.
 - `App.tsx`: textos y navegación derivados del mismo MotionValue.
 
@@ -28,4 +30,4 @@ Respeta movimiento reducido, navegación por teclado y WebGL no disponible. El e
 
 Referencias técnicas: [Motion useScroll](https://motion.dev/docs/react-use-scroll) y [R3F useFrame](https://r3f.docs.pmnd.rs/api/hooks).
 
-Gráficos mejorados: MetalDetails.tsx contiene lingote con perfil de fundición, texturas de cepillado, rodillos torneados, ejes, rodamientos, tornillería y bastidor fijo. CocaColaCan.tsx normaliza el GLB descargado de William Prosser (CC BY 4.0), conserva texturas 2K y comparte geometría mediante instancing en el supermercado.
+Gráficos mejorados: `MetalDetails.tsx` contiene el lingote con perfil de fundición, texturas de cepillado, rodillos torneados, ejes, rodamientos, tornillería y bastidor fijo. La lata de aluminio y las unidades del estante son geometría procedural reutilizada mediante instancing.
